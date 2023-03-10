@@ -1,0 +1,9 @@
+resolver: lts-20.7
+compiler: ghc-9.2.5
+allow-newer: true
+packages:
+- '.' 
+extra-deps:
+- megaparsec-9.3.0
+- clock-0.8.3
+
