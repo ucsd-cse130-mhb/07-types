@@ -21,7 +21,7 @@ runTests groups = do
   defaultMainWithIngredients (includingOptions coreOptions : defaultIngredients) 
     (tests sc groups) `catch` (\(e :: ExitCode) -> do
       (n, tot) <- readIORef sc
-      let tot' = if tot > 0 then tot - (2 * extraPoints) else tot - extraPoints)
+      let tot' = if tot > 0 then tot - (2 * extraPoints) else tot - extraPoints
       putStrLn ("OVERALL SCORE = " ++ show n ++ " / "++ show tot')
       throwIO e)
 
