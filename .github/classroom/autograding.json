@@ -72,7 +72,7 @@
     },
     {
       "name": "part 1b test 1",
-      "run": "stack test --ta '--pattern \"part 1b test 1\"'",
+      "run": "stack test --ta '--pattern \"$0==\\\"Tests.NANO.part 1b test 1\\\"\"'",
       "setup": "",
       "input": "",
       "output": "",
