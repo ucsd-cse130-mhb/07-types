@@ -595,7 +595,7 @@
       "run": "sleep 0.0001",
       "setup": "",
       "input": "",
-      "output": "",
+      "output": "adjust denominator only",
       "comparison": "included",
       "timeout": 10,
       "points": -15.0
