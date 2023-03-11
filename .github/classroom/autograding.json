@@ -1,8 +1,188 @@
 {
   "tests": [
     {
-      "name": "lookup1",
-      "run": "stack test --ta '--pattern \"lookup1\"'",
+      "name": "freeTVars 1",
+      "run": "stack test --ta '--pattern \"freeTVars 1\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1.0
+    },
+    {
+      "name": "freeTVars 2",
+      "run": "stack test --ta '--pattern \"freeTVars 2\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1.0
+    },
+    {
+      "name": "freeTVars 3",
+      "run": "stack test --ta '--pattern \"freeTVars 3\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "freeTVars 4",
+      "run": "stack test --ta '--pattern \"freeTVars 4\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "freeTVars 5",
+      "run": "stack test --ta '--pattern \"freeTVars 5\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1.0
+    },
+    {
+      "name": "freeTVars 6",
+      "run": "stack test --ta '--pattern \"freeTVars 6\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1.0
+    },
+    {
+      "name": "freeTVars 7",
+      "run": "stack test --ta '--pattern \"freeTVars 7\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 1",
+      "run": "stack test --ta '--pattern \"part 1b test 1\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 2",
+      "run": "stack test --ta '--pattern \"part 1b test 2\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 3",
+      "run": "stack test --ta '--pattern \"part 1b test 3\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 4",
+      "run": "stack test --ta '--pattern \"part 1b test 4\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 5",
+      "run": "stack test --ta '--pattern \"part 1b test 5\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 6",
+      "run": "stack test --ta '--pattern \"part 1b test 6\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 7",
+      "run": "stack test --ta '--pattern \"part 1b test 7\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 8",
+      "run": "stack test --ta '--pattern \"part 1b test 8\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 9",
+      "run": "stack test --ta '--pattern \"part 1b test 9\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 10",
+      "run": "stack test --ta '--pattern \"part 1b test 10\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 11",
+      "run": "stack test --ta '--pattern \"part 1b test 11\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "part 1b test 12",
+      "run": "stack test --ta '--pattern \"part 1b test 12\"'",
       "setup": "",
       "input": "",
       "output": "",
@@ -11,8 +191,28 @@
       "points": 3.0
     },
     {
-      "name": "lookup2",
-      "run": "stack test --ta '--pattern \"lookup2\"'",
+      "name": "unifyTVar 1",
+      "run": "stack test --ta '--pattern \"unifyTVar 1\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "unifyTVar 2",
+      "run": "stack test --ta '--pattern \"unifyTVar 2\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "unifyTVar 3",
+      "run": "stack test --ta '--pattern \"unifyTVar 3\"'",
       "setup": "",
       "input": "",
       "output": "",
@@ -21,294 +221,374 @@
       "points": 3.0
     },
     {
-      "name": "EBin 1",
-      "run": "stack test --ta '--pattern \"EBin 1\"'",
+      "name": "unifyTVar 4",
+      "run": "stack test --ta '--pattern \"unifyTVar 4\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "EBin 2",
-      "run": "stack test --ta '--pattern \"EBin 2\"'",
+      "name": "unify 1",
+      "run": "stack test --ta '--pattern \"unify 1\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1a.1",
-      "run": "stack test --ta '--pattern \"/1a - c1/\"'",
+      "name": "unify 2",
+      "run": "stack test --ta '--pattern \"unify 2\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 4.0
+      "points": 2.0
     },
     {
-      "name": "1a.2",
-      "run": "stack test --ta '--pattern \"/1a - (/\"'",
+      "name": "unify 3",
+      "run": "stack test --ta '--pattern \"unify 3\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "1b.1",
-      "run": "stack test --ta '--pattern \"/1b - True/\"'",
+      "name": "unify 4",
+      "run": "stack test --ta '--pattern \"unify 4\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "1b.2",
-      "run": "stack test --ta '--pattern \"/1b - bt/\"'",
+      "name": "unify 5",
+      "run": "stack test --ta '--pattern \"unify 5\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "1c",
-      "run": "stack test --ta '--pattern \"1c\"'",
+      "name": "unify 6",
+      "run": "stack test --ta '--pattern \"unify 6\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1d",
-      "run": "stack test --ta '--pattern \"1d\"'",
+      "name": "3atest1.hs",
+      "run": "stack test --ta '--pattern \"3atest1.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1e",
-      "run": "stack test --ta '--pattern \"/1e - eval/\"'",
+      "name": "3atest2.hs",
+      "run": "stack test --ta '--pattern \"3atest2.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1f.1",
-      "run": "stack test --ta '--pattern \"/1f - rec/\"'",
+      "name": "3atest3.hs",
+      "run": "stack test --ta '--pattern \"3atest3.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1f.2",
-      "run": "stack test --ta '--pattern \"/1f - VPrim 1/\"'",
+      "name": "3atest4.hs",
+      "run": "stack test --ta '--pattern \"3atest4.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1f.3",
-      "run": "stack test --ta '--pattern \"/1f - VPrim 2/\"'",
+      "name": "3atest5.hs",
+      "run": "stack test --ta '--pattern \"3atest5.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "1e/f",
-      "run": "stack test --ta '--pattern \"/sumList tail/\"'",
+      "name": "generalize 1",
+      "run": "stack test --ta '--pattern \"generalize 1\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "t1.hs",
-      "run": "stack test --ta '--pattern \"t1.hs\"'",
+      "name": "generalize 2",
+      "run": "stack test --ta '--pattern \"generalize 2\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "t2.hs",
-      "run": "stack test --ta '--pattern \"t2.hs\"'",
+      "name": "generalize 3",
+      "run": "stack test --ta '--pattern \"generalize 3\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "t3.hs",
-      "run": "stack test --ta '--pattern \"t3.hs\"'",
+      "name": "instantiate 1",
+      "run": "stack test --ta '--pattern \"instantiate 1\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "t4.hs",
-      "run": "stack test --ta '--pattern \"t4.hs\"'",
+      "name": "instantiate 2",
+      "run": "stack test --ta '--pattern \"instantiate 2\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "t5.hs",
-      "run": "stack test --ta '--pattern \"t5.hs\"'",
+      "name": "instantiate 3",
+      "run": "stack test --ta '--pattern \"instantiate 3\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "t6.hs",
-      "run": "stack test --ta '--pattern \"t6.hs\"'",
+      "name": "3btest1.hs",
+      "run": "stack test --ta '--pattern \"3btest1.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "t8.hs",
-      "run": "stack test --ta '--pattern \"t8.hs\"'",
+      "name": "3btest2.hs",
+      "run": "stack test --ta '--pattern \"3btest2.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 3.0
     },
     {
-      "name": "t9.hs",
-      "run": "stack test --ta '--pattern \"t9.hs\"'",
+      "name": "3ctest1.hs",
+      "run": "stack test --ta '--pattern \"3ctest1.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t10.hs",
-      "run": "stack test --ta '--pattern \"t10.hs\"'",
+      "name": "3ctest2.hs",
+      "run": "stack test --ta '--pattern \"3ctest2.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t11.hs",
-      "run": "stack test --ta '--pattern \"t11.hs\"'",
+      "name": "3ctest3.hs",
+      "run": "stack test --ta '--pattern \"3ctest3.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t12.hs",
-      "run": "stack test --ta '--pattern \"t12.hs\"'",
+      "name": "3ctest4.hs",
+      "run": "stack test --ta '--pattern \"3ctest4.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t13.hs",
-      "run": "stack test --ta '--pattern \"t13.hs\"'",
+      "name": "3ctest5.hs",
+      "run": "stack test --ta '--pattern \"3ctest5.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t14.hs",
-      "run": "stack test --ta '--pattern \"t14.hs\"'",
+      "name": "3ctest6.hs",
+      "run": "stack test --ta '--pattern \"3ctest6.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t15.hs",
-      "run": "stack test --ta '--pattern \"t15.hs\"'",
+      "name": "3ctest7.hs",
+      "run": "stack test --ta '--pattern \"3ctest7.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
     },
     {
-      "name": "t16.hs",
-      "run": "stack test --ta '--pattern \"t16.hs\"'",
+      "name": "3ctest8.hs",
+      "run": "stack test --ta '--pattern \"3ctest8.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 1.0
     },
     {
-      "name": "t17.hs",
-      "run": "stack test --ta '--pattern \"t17.hs\"'",
+      "name": "3ctest9.hs",
+      "run": "stack test --ta '--pattern \"3ctest9.hs\"'",
       "setup": "",
       "input": "",
       "output": "",
       "comparison": "included",
       "timeout": 10,
-      "points": 5.0
+      "points": 2.0
+    },
+    {
+      "name": "3ctest10.hs",
+      "run": "stack test --ta '--pattern \"3ctest10.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 2.0
+    },
+    {
+      "name": "3ctest11.hs",
+      "run": "stack test --ta '--pattern \"3ctest11.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1.0
+    },
+    {
+      "name": "3ctest12.hs",
+      "run": "stack test --ta '--pattern \"3ctest12.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1.0
+    },
+    {
+      "name": "3dtest1.hs",
+      "run": "stack test --ta '--pattern \"3dtest1.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3.0
+    },
+    {
+      "name": "3dtest2.hs",
+      "run": "stack test --ta '--pattern \"3dtest2.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3.0
+    },
+    {
+      "name": "3dtest3.hs",
+      "run": "stack test --ta '--pattern \"3dtest3.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3.0
+    },
+    {
+      "name": "3dtest4.hs",
+      "run": "stack test --ta '--pattern \"3dtest4.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3.0
+    },
+    {
+      "name": "3dtest5.hs",
+      "run": "stack test --ta '--pattern \"3dtest5.hs\"'",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 3.0
     }
   ]
 }
