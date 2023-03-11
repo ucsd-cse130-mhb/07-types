@@ -27,7 +27,7 @@ unit sc = testGroup "NANO"
               , ["a"]
               , 1
               , "freeTVars 2")
-  , scoreTest ( Nano.freeTVars
+  , scoreTest ( sort . Nano.freeTVars
               , (TVar "a" :=> TVar "b")
               , ["a", "b"]
               , 2

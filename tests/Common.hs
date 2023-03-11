@@ -12,13 +12,17 @@ import Control.Exception
 
 type Score = IORef (Int, Int)
 
+extraPoints :: Int
+extraPoints = 15  -- update or remove this from assignment to assignment 
+
 runTests :: [Score -> TestTree] -> IO ()
 runTests groups = do
   sc <- initScore
   defaultMainWithIngredients (includingOptions coreOptions : defaultIngredients) 
     (tests sc groups) `catch` (\(e :: ExitCode) -> do
       (n, tot) <- readIORef sc
-      putStrLn ("OVERALL SCORE = " ++ show n ++ " / "++ show tot)
+      let tot' = if tot > 0 then tot - (2 * extraPoints) else tot - extraPoints)
+      putStrLn ("OVERALL SCORE = " ++ show n ++ " / "++ show tot')
       throwIO e)
 
 tests :: Score -> [Score -> TestTree] -> TestTree

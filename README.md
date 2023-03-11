@@ -1,4 +1,4 @@
-# Assignment 7: Nano Types (120 public points, 240 overall)
+# Assignment 7: Nano Types (105 (+15 EC) public points, 210 (+30 EC) overall)
 
 ## Forming groups
 If you wish, this assignment may be completed by groups of two.  If working in a group, only one partner should submit to Gradescope, and should choose the other partner as a "Team Member" on Gradescope when submitting.
@@ -145,8 +145,11 @@ which you will need later on.
 
 ### (a) Free type variables: 20 points (10 public)
 
-First implement two functions that compute the list of *free type variables*
-in a type and in a poly-type.
+First implement two functions that compute the list containing the set of 
+*free type variables* in a type and in a poly-type. Even though a list allows for
+duplicate elements, you want to make sure that the elements of your lists
+for `freeTVars` are unique. 
+
 Note: to enable overloading (using a function with the same name for types and poly-types),
 this function is defined as part of a type class `HasTVars`.
 
@@ -162,8 +165,19 @@ As always, you are allowed (and encouraged) to replace `freeTVars t` and `freeTV
 
 Throughout this assignment, you are allowed to use any library functions,
 as long as you don't add new `import` statements.
-In particular, some useful functions from the `List` library include `delete`, `nub`, and `\\` (look them up on Hoogle).
-Note: the `List` library is imported *qualified*:
+In particular, some useful functions from the `Data.List` library include 
+`delete` (remove an element), `nub` (a.k.a "dedupe" from the midterm).
+
+[Some of the functions](https://hackage.haskell.org/package/base-4.18.0.0/docs/Data-List.html#g:20)
+in `Data.List` mimic set operations. In particular, you may find it useful
+to learn about `union` and `\\` (set difference).
+
+You can read all about the `Data.List` library 
+on [Hackage here](https://hackage.haskell.org/package/base-4.18.0.0/docs/Data-List.html).
+You're free to use anything you find in there. 
+You may also look up functions on [Hoogle](https://hoogle.haskell.org/).
+
+Note: the `Data.List` library is imported *qualified*:
 
 ```haskell
 import qualified Data.List as L
@@ -180,8 +194,20 @@ When you are done you should get the following behavior:
 >>> freeTVars (TVar "a")
 ["a"]
 
->>> freeTVars (forall "a" (list "a" :=> "a"))
+>>> freeTVars (Forall "a" (Mono (TList (TVar "a") :=> (TVar "a"))))
 []
+
+>>> freeTVars (TList (TList (TVar "a")))
+["a"]
+
+>>> sort (freeTVars (TVar "a" :=> TVar "b"))
+["a", "b"]
+
+>>> freeTVars (TVar "a" :=> TVar "a")
+["a"]
+
+>>> freeTVars (Forall "a" (Mono (TList (TVar "a") :=> (TVar "b"))))
+["b"]
 ```
 
 
@@ -193,24 +219,35 @@ Implement a function to lookup what a type variable maps to in a substitution:
 lookupTVar :: TVar -> Subst -> Type
 ```
 and a function to remove the mapping for a given type variable from a substitution
-(recall that all variables in a substitution are supposed to be unique):
+(**remember** that all variables in a substitution are supposed to be **unique**):
 
 ```haskell
 removeTVar :: TVar -> Subst -> Subst
 ```
+
+If your type variable `a` is not mapped in the substitution, then `lookupTVar` should
+just return `(TVar a)` -- i.e. it makes no substitution -- and `removeTVar` should
+return the substitution unchanged.
+
 When you are done you should get the following behavior:
 
 ```haskell
 >>> lookupTVar "a" [("a", TInt)]
-Int
+Int  -- this is the pretty-printed `TInt`
 
 >>> lookupTVar "a" [("b", TInt)]
-a
+a    -- this is the pretty-printed `TVar "a"`
+
+>>> lookupTVar "g" [("g", TBool), ("a", TInt)]
+Bool -- this is the pretty-printed `TBool`
 
 >>> removeTVar "a" [("a", TInt)]
 []
 
 >>> removeTVar "a" [("b", TInt)]
+[("b",Int)]
+
+>>> removeTVar "a" [("a", TInt), ("b", TBool)]
 [("b",Int)]
 ```
 
@@ -231,11 +268,14 @@ Once you have implemented this functionality and
 recompiled, you should get the following behavior:
 
 ```haskell
->>> apply [("a",TInt)] (list "a")
-[Int]
+>>> apply [("a",TInt)] (TList (TVar "a"))
+[Int]            -- i.e., TList TInt
 
->>> apply [("a",TInt)] (forall "a" $ list "a")
-forall a . [a]
+>>> apply [("a",TInt)] (Forall "a" $ Mono (TList (TVar "a")))
+forall a . [a]   -- i.e., Forall "a" (Mono (TList (TVar "a")))
+
+>>> apply [("a", TList (TInt)), ("b", TInt)] (TVar "b" :=> TVar "a")
+Int -> [Int]     -- i.e., TInt :=> TList (TInt)
 ```
 
 Finally, use `apply` to implement the function `extendSubst`,
@@ -244,7 +284,8 @@ which extends a substitution with a new type assignment:
 ```haskell
 extendSubst :: Subst -> TVar -> Type -> Subst
 ```
-When you are done you should get the following behavior:
+When you are done you should get the following behavior.
+Pay close attention to the second and third test cases:
 
 ```haskell
 >>> extendSubst [("a", TInt)] "b" TBool
@@ -252,7 +293,16 @@ When you are done you should get the following behavior:
 
 >>> extendSubst [("a", list "b")] "b" TBool
 [("b",Bool), ("a",[Bool])]
+
+>>> extendSubst [("a", TInt)] "b" (TList (TVar "a"))
+[("b",[Int]), ("a",Int)] 
+-- i.e. [("b", TList (TInt)), ("a", TInt)]
 ```
+
+**Remember**, you can assume that `extendSubst` will never be called with a 
+TVar that is already mapped in the substitution (and you should be careful
+not to do this accidentally in Problem 2 -- even though you might not directly
+call `extendSubst` you will likely call `extendState` which does call `extendSubst`).
 
 
 ## Problem 2: Unification (50 points, 25 public)
@@ -284,21 +334,25 @@ alongside the "current substitution".
 
 Implement a function `unifyTVar st a t`
 that tries to unify a type variable `a` with a type `t`.
-If it succeeds, it records the new type assignment by extending the state `st`.
+If it succeeds, it records the new type assignment (for `a`) 
+by extending the state `st`.
 If it fails, it throws an exception.
 
 ```haskell
 unifyTVar :: InferState -> TVar -> Type -> InferState
 ```
 
-You can use a helper function `extendState` to extend a substitution inside a state.
+You can use the provided helper function `extendState` 
+to extend a substitution inside a state -- it's probably simpler to use 
+that than to call `extendSubst` directly.
 
 **Assumption:** 
 You can *assume* that `a` does not appear in the *domain* of `stSub st`
 (i.e. among the type variables it maps);
 remember to *guarantee* this property whenever you call `unifyTVar`.
 
-When you are done you should get the following behavior:
+When you are done you should get the following behavior. Note that 
+`initInferState == []`:
 
 ```haskell
 >>> stSub $ unifyTVar initInferState "a" (list "b")
@@ -310,6 +364,23 @@ When you are done you should get the following behavior:
 >>> stSub $ unifyTVar initInferState "a" (list "a")
 *** Exception: Error {errMsg = "type error: cannot unify a and [a] (occurs check)"}
 ```
+
+*Hints:* This one is easier to do by **not** pattern matching on the 
+constructors for the `Type` in the input. Rather, there are basically
+three different outcomes that can happen that correspond to the 
+three test cases above: either we learn a constraint (for the type 
+variable) and add it to our unifying substitution, or it turns out
+no new constraint is needed, or we find ourselves in a situation 
+where we can't possible unify `TVar "a"` with the input type
+and we have to throw an error. Think carefully about when exactly
+we end up in each of these three situations and then implement your 
+`unifyTVar` function.
+
+**Note:** When you need to throw an error, use 
+`throw (Error "message goes here")`. The tests that are looking for an error
+won't pass if you use the `error` keyword instead. You don't need to reproduce
+the whole fancy message above, but you do need to have the phrase `"type error"`
+appear in your message.
 
 ### (b) Unification for types: 30 points (15 public)
 
@@ -324,7 +395,8 @@ unify :: InferState -> Type -> Type -> InferState
 
 **Assumption:** 
 You can *assume* that any type variables in `t1` and `t2` do not appear in the domain of `stSub st`;
-remember to *guarantee* this property whenever you call `unify`.
+remember to *guarantee* this property whenever you call `unify` (either recursively here or
+where you call `unify` from the `infer` function).
 
 When you are done you should get the following behavior:
 
@@ -335,12 +407,19 @@ When you are done you should get the following behavior:
 >>> stSub $ unify initInferState TInt TBool
 *** Exception: Error {errMsg = "type error: cannot unify Int and Bool"}
 
+>>> stSub $ unify initInferState (TInt :=> TInt) ("a" :=> "a")
+[("a",Int)]
+
 >>> stSub $ unify initInferState ("a" :=> TInt) (TBool :=> "b")
 [("b",Int),("a",Bool)]
 
 >>> stSub $ unify initInferState (list "a") (list $ list "a")
 *** Exception: Error {errMsg = "type error: cannot unify a and [a] (occurs check)"}
 ```
+
+*Hints*: This function will need to be recursive, so think about how you
+might take a recursive approach -- which cases will have subproblems and
+what are those subproblems? 
 
 ## Problem 3: Type Inference (120 points, 60 public)
 
@@ -350,13 +429,24 @@ Now we have everything in place to implement type inference!
 
 Let's first consider the fragment of the language without:
 
-  * binary operators
+  * binary operators (we already implemented `+` for you)
   * conditionals
   * let polymorphism
   * recursion
   * lists
 
 Implement the function `infer st gamma e` for this fragment.
+To be precise, you need to implement the following cases to pass
+part (a):
+
+  * integer constants (EInt)
+  * boolean constants (EBool)
+  * variables (EVar), but you can assume for (a) that whatever you get
+    from your typing environment doesn't contain `forall`s.
+  * lambda abstractions (ELam)
+  * applications (EApp)
+  * let bindings without polymorphism (ELet), but don't do any generalizing in part (a)
+
 This function attempts to infer the type of `e` in type environment `gamma`
 given that the current state is `st`.
 If `e` imposes constraints on the types of its sub-expressions, 
@@ -364,19 +454,20 @@ If `e` imposes constraints on the types of its sub-expressions,
 If all unification steps succeed, `infer` returns the inferred type of `e` and a new state 
 (possibly extended with new type assignments generated during unification).
 
-In this part, you can assume that the type environment maps all variables to mono-types, i.e. `Mono t`.
+In this part, you can assume that the type environment maps all variables to mono-types, 
+i.e. every type in the type environment has the structure `Mono t`.
 
 In particular, you should observe the following behavior:
 
 ```haskell
 >>> typeOfString "True"
-Bool
+Bool   -- TBool
 
 >>> typeOfString "1"
-Int
+Int    -- TInt
 
 >>> typeOfString "(\\x -> x) 5"
-Int
+Int    -- TInt
 
 >>> typeOfString "(\\x -> x + 1) True"
 *** Exception: Error {errMsg = "type error: cannot unify Int and Bool"}
@@ -405,10 +496,10 @@ When you are done you should observe the following behavior:
 
 ```haskell
 >>> generalize [] ("a" :=> "a")
-forall a . (a) -> a
+forall a . (a) -> a   -- Forall "a" $ Mono $ (TVar "a") :=> (TVar "a")
 
 >>> generalize [("x", Mono "a")] ("a" :=> "a")
-(a) -> a
+(a) -> a              -- Mono $ (TVar "a") :=> (TVar "a")
 ```
 
 Next implement the function `instantiate n s` that instantiates a poly-type `s`
@@ -427,11 +518,18 @@ Remember to *guarantee* this property whenever you construct your own polymorphi
 When you are done you should observe the following behavior:
 
 ```haskell
+>>> instantiate 2 (Forall "h" $ Mono $ TList (TVar "h"))
+(3, [a2])       -- TList (TVar "a2")
+
+>>> instantiate 2 (Forall "a" $ Mono $ (TVar "a") :=> (TVar "b"))
+(3, (a2) -> b)  -- (TVar "a2") :=> (TVar "b"))
+
 >>> instantiate 0 (Forall "a" (Forall "b" (Mono ("a" :=> "b"))))
 (2,(a0) -> a1)
 ```
 
 Finally, modify the function `infer` to support polymorphism.
+You'll have to change the `EVar` and `ELet` cases you wrote in part (a).
 
 When you are done, your implementation should be able to 
 type-check the "double identity" example from the lecture:
@@ -441,6 +539,9 @@ type-check the "double identity" example from the lecture:
 (Int) -> Int
 ```
 
+**Hint:** To help figure out where `instantiate` should be used in `infer`, think
+about the return type of `infer`.
+
 ### (c) Built-in functions: 30 points (15 public)
 
 Instead of implementing separate type inference for binary operators, conditionals, and list,
@@ -449,10 +550,14 @@ and reuse the type inference for variables and function application.
 
 Fill in the types of built-in functions inside `preludeTypes`
 (we have pre-filled the one for `+`).
-Remember that you are not allowed to use `a0, a1, ...` as bound type variables,
-since those are reserved for use as free type variables by the algorithm.
+Remember that you are not allowed to use the names `a0, a1, ...` as bound type variables
+because those are reserved for use as free type variables by the algorithm.
 
-### (d) Recursion: 30 points (15 public)
+You are not writing any function definitions here: you just need to supply a type 
+(object of type Poly) that expresses the most general type for these built-in functions.
+
+### (d) EXTRA CREDIT: Recursion: 30 extra points (15 extra public)
 
 Modify your implementation of `infer` to support recursive function definitions.
-Once you are done, all tests should pass.
+Once you are done, all tests should pass. See `tests/input/3dtest1.hs` through 
+`tests/input/3dtest5.hs` for some examples.

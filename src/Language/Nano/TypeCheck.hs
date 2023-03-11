@@ -54,7 +54,7 @@ extendTypeEnv :: Id -> Poly -> TypeEnv -> TypeEnv
 extendTypeEnv x s gamma = (x,s) : gamma  
 
 -- | Lookup a type variable in a substitution;
---   if not present, return the variable unchanged
+--   if not present, return the variable as a type (e.g. TVar a)
 lookupTVar :: TVar -> Subst -> Type
 lookupTVar a sub = error "TBD: lookupTVar"
 
@@ -112,6 +112,7 @@ extendState (InferState sub n) a t = InferState (extendSubst sub a t) n
         
 -- | Unify a type variable with a type; 
 --   if successful return an updated state, otherwise throw an error
+--   Hint: Use `throw (Error "message goes here")` to throw an exception
 unifyTVar :: InferState -> TVar -> Type -> InferState
 unifyTVar st a t = error "TBD: unifyTVar"
     
@@ -123,7 +124,10 @@ unify st t1 t2 = error "TBD: unify"
 --------------------------------------------------------------------------------
 -- Problem 3: Type Inference
 --------------------------------------------------------------------------------    
-  
+
+-- | Main type inference algorithm
+--   Hint: Use `throw (Error "message goes here")` to throw an error
+
 infer :: InferState -> TypeEnv -> Expr -> (InferState, Type)
 infer st _   (EInt _)          = error "TBD: infer EInt"
 infer st _   (EBool _)         = error "TBD: infer EBool"
