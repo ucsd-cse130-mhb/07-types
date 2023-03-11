@@ -589,6 +589,16 @@
       "comparison": "included",
       "timeout": 10,
       "points": 3.0
+    },
+    {
+      "name": "extra_credit_adjustment",
+      "run": "sleep 0.0001",
+      "setup": "",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": -15.0
     }
   ]
 }
