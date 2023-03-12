@@ -98,7 +98,7 @@ data Poly = Mono Type        -- mono-type
 where `TVar` is just a type alias for `String` used to represent type variable names:
 
 ```haskell
-type Id = String
+type TVar = String
 ```
 
 For example, a Nano type `Int -> Int` is represented inside your type checker as:
@@ -248,7 +248,7 @@ Bool -- this is the pretty-printed `TBool`
 [("b",Int)]
 
 >>> removeTVar "a" [("a", TInt), ("b", TBool)]
-[("b",Int)]
+[("b",Bool)]
 ```
 
 Next, use `lookupTVar` and `removeTVar` to write 
